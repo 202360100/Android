@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "FaceRecognition",
+    "slug": "FaceRecognition",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "plugins": [
+      "expo-camera",
+      "expo-dev-client"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.facerecognition.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.facerecognition.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9a06c15a-e13f-46ee-8307-7456217638ef"
+      }
+    }
+  }
+}
