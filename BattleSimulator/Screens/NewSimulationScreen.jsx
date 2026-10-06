@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
+
 import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -25,64 +31,83 @@ export default function NewSimulationScreen({ navigation }) {
       return;
     }
 
+    Keyboard.dismiss();
+
     navigation.navigate('Batalla', {
       knights: numberOfKnights,
       orcs: numberOfOrcs,
+      battleId: Date.now(),
     });
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={
+        Platform.OS === 'ios'
+          ? 'padding'
+          : 'height'
+      }
+    >
+      <Pressable
+        style={styles.container}
+        onPress={Keyboard.dismiss}
+      >
+        <ScrollView
+          contentContainerStyle={styles.content}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
+          <Text style={styles.title}>
+            NUEVA SIMULACIÓN
+          </Text>
 
-      <Text style={styles.title}>
-        NUEVA SIMULACIÓN
-      </Text>
+          <Text style={styles.description}>
+            Configura los ejércitos que participarán
+            en la batalla.
+          </Text>
 
-      <Text style={styles.description}>
-        Configura los ejércitos que participarán
-        en la batalla.
-      </Text>
+          <View style={styles.section}>
+            <Text style={styles.label}>
+              🛡️ Caballeros
+            </Text>
 
-      <View style={styles.section}>
+            <TextInput
+              style={styles.input}
+              value={knights}
+              onChangeText={setKnights}
+              keyboardType="number-pad"
+              placeholder="Cantidad de caballeros"
+              maxLength={3}
+              returnKeyType="done"
+              onSubmitEditing={Keyboard.dismiss}
+            />
+          </View>
 
-        <Text style={styles.label}>
-          🛡️ Caballeros
-        </Text>
+          <View style={styles.section}>
+            <Text style={styles.label}>
+              👹 Orcos
+            </Text>
 
-        <TextInput
-          style={styles.input}
-          value={knights}
-          onChangeText={setKnights}
-          keyboardType="number-pad"
-          placeholder="Cantidad de caballeros"
-          maxLength={3}
-        />
+            <TextInput
+              style={styles.input}
+              value={orcs}
+              onChangeText={setOrcs}
+              keyboardType="number-pad"
+              placeholder="Cantidad de orcos"
+              maxLength={3}
+              returnKeyType="done"
+              onSubmitEditing={Keyboard.dismiss}
+            />
+          </View>
 
-      </View>
-
-      <View style={styles.section}>
-
-        <Text style={styles.label}>
-          👹 Orcos
-        </Text>
-
-        <TextInput
-          style={styles.input}
-          value={orcs}
-          onChangeText={setOrcs}
-          keyboardType="number-pad"
-          placeholder="Cantidad de orcos"
-          maxLength={3}
-        />
-
-      </View>
-
-      <RoundedButton
-        title="COMENZAR BATALLA"
-        onPress={startSimulation}
-      />
-
-    </View>
+          <RoundedButton
+            title="COMENZAR BATALLA"
+            onPress={startSimulation}
+          />
+        </ScrollView>
+      </Pressable>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -90,6 +115,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f2f2f2',
+  },
+
+  content: {
+    flexGrow: 1,
     padding: 30,
     justifyContent: 'center',
   },
