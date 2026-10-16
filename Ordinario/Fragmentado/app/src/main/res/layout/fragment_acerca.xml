@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#DCEAFE"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Acerca de"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#164E8A" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aplicación desarrollada en Android Studio."
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginTop="12dp"
+        android:textColor="#164E8A" />
+
+</LinearLayout>
