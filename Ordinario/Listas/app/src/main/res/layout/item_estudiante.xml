@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="10dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/txtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre del estudiante"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#202A44"/>
+
+    <TextView
+        android:id="@+id/txtCarrera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Carrera"
+        android:textSize="14sp"
+        android:textColor="#626B7A"
+        android:layout_marginTop="4dp"/>
+
+</LinearLayout>
