@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CRUD de productos"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:paddingBottom="20dp" />
+
+        <!-- AGREGAR -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Agregar producto"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etProducto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del producto"
+            android:inputType="textCapSentences" />
+
+        <EditText
+            android:id="@+id/etDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descripción"
+            android:inputType="textCapSentences|textMultiLine"
+            android:minLines="1" />
+
+        <EditText
+            android:id="@+id/etPrecio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Precio"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/btnAgregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Agregar producto" />
+
+        <!-- CONSULTAR -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Consultar productos"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp" />
+
+        <Button
+            android:id="@+id/btnConsultar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Consultar productos" />
+
+        <TextView
+            android:id="@+id/tvProductos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pulsa Consultar para ver los productos."
+            android:textSize="16sp"
+            android:padding="8dp" />
+
+        <!-- ACTUALIZAR -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar producto"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp" />
+
+        <EditText
+            android:id="@+id/etIdActualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID del producto"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/etProductoActualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nuevo nombre"
+            android:inputType="textCapSentences" />
+
+        <EditText
+            android:id="@+id/etDescripcionActualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nueva descripción"
+            android:inputType="textCapSentences|textMultiLine" />
+
+        <EditText
+            android:id="@+id/etPrecioActualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nuevo precio"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/btnActualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar producto" />
+
+        <!-- ELIMINAR -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eliminar producto"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp" />
+
+        <EditText
+            android:id="@+id/etIdEliminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID del producto"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btnEliminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eliminar producto" />
+
+    </LinearLayout>
+</ScrollView>
