@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_splash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg_splash"
+    android:padding="25dp">
+
+    <!-- Icono central -->
+    <FrameLayout
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/bg_icon_splash"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_splash_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_sensores"
+            android:contentDescription="Icono de sensores"
+            android:scaleType="fitCenter"/>
+
+    </FrameLayout>
+
+    <!-- Nombre de la aplicación -->
+    <TextView
+        android:id="@+id/txt_splash_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Sensores Android"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <!-- Subtítulo -->
+    <TextView
+        android:id="@+id/txt_splash_subtitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Explorando la tecnología\nde tu dispositivo"
+        android:textColor="#E3F2FD"
+        android:textSize="17sp"
+        android:gravity="center"
+        android:lineSpacingExtra="5dp"/>
+
+    <!-- Indicador inferior -->
+    <ProgressBar
+        android:id="@+id/progress_splash"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="120dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="45dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@android:color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="INICIANDO APLICACIÓN..."
+        android:textColor="#E3F2FD"
+        android:textSize="11sp"
+        android:letterSpacing="0.15"/>
+
+</LinearLayout>
