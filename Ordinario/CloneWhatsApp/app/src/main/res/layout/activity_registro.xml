@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080B19"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <!-- ENCABEZADO -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLONE WHATSAPP"
+            android:textColor="#00F5FF"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.05"
+            android:layout_marginTop="25dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[ PIXEL EDITION ]"
+            android:textColor="#FF38E8"
+            android:textSize="13sp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="30dp"/>
+
+        <!-- PANEL PRINCIPAL -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="@drawable/bg_neon_panel">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CREATE ACCOUNT"
+                android:textColor="#FF38E8"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:layout_gravity="center"
+                android:layout_marginBottom="25dp"/>
+
+            <!-- NOMBRE -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOMBRE"
+                android:textColor="#00F5FF"
+                android:textSize="12sp"
+                android:fontFamily="monospace"/>
+
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/bg_neon_input"
+                android:hint="Tu nombre"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#777B99"
+                android:fontFamily="monospace"
+                android:singleLine="true"
+                android:inputType="textPersonName"/>
+
+            <!-- APELLIDO -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="APELLIDO"
+                android:textColor="#00F5FF"
+                android:textSize="12sp"
+                android:fontFamily="monospace"/>
+
+            <EditText
+                android:id="@+id/etApellido"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/bg_neon_input"
+                android:hint="Tu apellido"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#777B99"
+                android:fontFamily="monospace"
+                android:singleLine="true"
+                android:inputType="textPersonName"/>
+
+            <!-- TELEFONO -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NUMERO TELEFONICO"
+                android:textColor="#00F5FF"
+                android:textSize="12sp"
+                android:fontFamily="monospace"/>
+
+            <EditText
+                android:id="@+id/etNumero"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/bg_neon_input"
+                android:hint="Ej. 2721234567"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#777B99"
+                android:fontFamily="monospace"
+                android:singleLine="true"
+                android:inputType="phone"/>
+
+            <!-- CORREO -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CORREO ELECTRONICO"
+                android:textColor="#00F5FF"
+                android:textSize="12sp"
+                android:fontFamily="monospace"/>
+
+            <EditText
+                android:id="@+id/etCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/bg_neon_input"
+                android:hint="correo@ejemplo.com"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#777B99"
+                android:fontFamily="monospace"
+                android:singleLine="true"
+                android:inputType="textEmailAddress"/>
+
+            <!-- CONTRASEÑA -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CONTRASEÑA"
+                android:textColor="#00F5FF"
+                android:textSize="12sp"
+                android:fontFamily="monospace"/>
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/bg_neon_input"
+                android:hint="Minimo 6 caracteres"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#777B99"
+                android:fontFamily="monospace"
+                android:singleLine="true"
+                android:inputType="textPassword"/>
+
+            <!-- BOTON REGISTRAR -->
+
+            <Button
+                android:id="@+id/btnRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="REGISTRARSE"
+                android:textColor="#080B19"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:background="@drawable/bg_neon_button"
+                android:stateListAnimator="@null"/>
+
+        </LinearLayout>
+
+        <!-- PIE DE PAGINA -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PIXEL COMMUNICATION SYSTEM"
+            android:textColor="#777B99"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

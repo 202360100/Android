@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080B19"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <!-- Decoración superior -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="◆  ◆  ◆"
+            android:textColor="#FF38E8"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp" />
+
+        <!-- Logo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLONE"
+            android:textColor="#00F5FF"
+            android:textSize="38sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.12"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WHATSAPP"
+            android:textColor="#FF38E8"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.15" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[ CONNECT • CHAT • REPEAT ]"
+            android:textColor="#8A94B8"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="30dp" />
+
+        <!-- Panel principal -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="22dp"
+            android:background="@drawable/bg_neon_panel">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="INICIAR SESIÓN"
+                android:textColor="#00F5FF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingresa tus credenciales para continuar"
+                android:textColor="#AAB2D5"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:layout_marginBottom="28dp" />
+
+            <!-- Correo -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CORREO ELECTRÓNICO"
+                android:textColor="#FF38E8"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etCorreoLogin"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_neon_input"
+                android:hint="usuario@correo.com"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#68708F"
+                android:padding="12dp"
+                android:textSize="14sp"
+                android:fontFamily="monospace"
+                android:inputType="textEmailAddress"
+                android:autofillHints="emailAddress"
+                android:singleLine="true" />
+
+            <!-- Contraseña -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CONTRASEÑA"
+                android:textColor="#FF38E8"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etPasswordLogin"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_neon_input"
+                android:hint="••••••••"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#68708F"
+                android:padding="12dp"
+                android:textSize="14sp"
+                android:fontFamily="monospace"
+                android:inputType="textPassword"
+                android:autofillHints="password"
+                android:singleLine="true" />
+
+            <!-- Botón iniciar sesión -->
+            <Button
+                android:id="@+id/btnIniciarSesion"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bg_neon_button"
+                android:text="INICIAR SESIÓN"
+                android:textColor="#080B19"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:fontFamily="monospace"
+                android:letterSpacing="0.05" />
+
+            <!-- Separador -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="────── NEW PLAYER? ──────"
+                android:textColor="#8A94B8"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Registro -->
+            <Button
+                android:id="@+id/btnIrRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_neon_input"
+                android:text="CREAR CUENTA"
+                android:textColor="#FF38E8"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:fontFamily="monospace" />
+
+        </LinearLayout>
+
+        <!-- Decoración inferior -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SYSTEM ONLINE  //  VERSION 1.0"
+            android:textColor="#00F5FF"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="15dp" />
+
+    </LinearLayout>
+</ScrollView>
