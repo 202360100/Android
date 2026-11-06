@@ -38,17 +38,15 @@
                 android:fontFamily="monospace" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvPerfil"
+        <ImageView
+            android:id="@+id/ivFotoHome"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:gravity="center"
-            android:text="USER"
-            android:textColor="#080B19"
-            android:textStyle="bold"
-            android:textSize="11sp"
-            android:fontFamily="monospace"
-            android:background="@drawable/bg_neon_button" />
+            android:src="@drawable/ic_launcher_foreground"
+            android:scaleType="centerCrop"
+            android:contentDescription="Foto de perfil"
+            android:clickable="true"
+            android:focusable="true" />
 
     </LinearLayout>
 

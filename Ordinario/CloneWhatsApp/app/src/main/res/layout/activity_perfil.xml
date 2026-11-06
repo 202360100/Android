@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080B19"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="22dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="/// CONFIGURACIÓN DE PERFIL"
+            android:textColor="#00F5FF"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:padding="18dp" />
+
+        <!-- Fotografía provisional -->
+        <ImageView
+            android:id="@+id/ivFotoPerfil"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_launcher_foreground"
+            android:scaleType="centerCrop"
+            android:background="@drawable/bg_neon_panel"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Foto de perfil" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="FOTOGRAFÍA DE PERFIL"
+            android:textColor="#FF38E8"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="25dp" />
+
+        <!-- Panel -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="@drawable/bg_neon_panel">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DATOS PERSONALES"
+                android:textColor="#00F5FF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:layout_marginBottom="22dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NOMBRE"
+                android:textColor="#FF38E8"
+                android:textSize="12sp"
+                android:fontFamily="monospace" />
+
+            <EditText
+                android:id="@+id/etNombrePerfil"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bg_neon_input"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#68708F"
+                android:fontFamily="monospace"
+                android:singleLine="true"
+                android:maxLength="50" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="APELLIDO"
+                android:textColor="#FF38E8"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:layout_marginTop="18dp" />
+
+            <EditText
+                android:id="@+id/etApellidoPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bg_neon_input"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#68708F"
+                android:fontFamily="monospace"
+                android:singleLine="true"
+                android:maxLength="50" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NÚMERO TELEFÓNICO"
+                android:textColor="#FF38E8"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:layout_marginTop="18dp" />
+
+            <EditText
+                android:id="@+id/etNumeroPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bg_neon_input"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#68708F"
+                android:fontFamily="monospace"
+                android:inputType="phone"
+                android:singleLine="true"
+                android:maxLength="20" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DESCRIPCIÓN"
+                android:textColor="#FF38E8"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:layout_marginTop="18dp" />
+
+            <EditText
+                android:id="@+id/etDescripcionPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bg_neon_input"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#68708F"
+                android:fontFamily="monospace"
+                android:gravity="top"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLength="150" />
+
+            <Button
+                android:id="@+id/btnGuardarPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/bg_neon_button"
+                android:text="GUARDAR CAMBIOS"
+                android:textColor="#080B19"
+                android:textStyle="bold"
+                android:fontFamily="monospace" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnVolverPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="← REGRESAR"
+            android:textColor="#00F5FF"
+            android:textSize="13sp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="15dp" />
+
+    </LinearLayout>
+</ScrollView>

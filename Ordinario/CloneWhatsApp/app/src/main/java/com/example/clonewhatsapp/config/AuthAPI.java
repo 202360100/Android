@@ -24,6 +24,98 @@ public class AuthAPI {
         void onError(String error);
     }
 
+
+    public interface RecoveryCallback {
+        void onSuccess();
+        void onError(String mensaje);
+    }
+
+    public void recuperarPassword(String email, RecoveryCallback callback) {
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        executor.execute(() -> {
+
+            HttpURLConnection connection = null;
+
+            try {
+                URL url = new URL(
+                        SupabaseConfig.SUPABASE_URL +
+                                "/auth/v1/recover?redirect_to=clonewhatsapp://reset-password"
+                );
+
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setConnectTimeout(15000);
+                connection.setReadTimeout(15000);
+                connection.setDoOutput(true);
+
+                connection.setRequestProperty(
+                        "apikey", SupabaseConfig.SUPABASE_KEY
+                );
+                connection.setRequestProperty(
+                        "Content-Type", "application/json"
+                );
+
+                JSONObject body = new JSONObject();
+                body.put("email", email);
+
+                try (OutputStream os = connection.getOutputStream()) {
+                    os.write(body.toString().getBytes(StandardCharsets.UTF_8));
+                }
+
+                int responseCode = connection.getResponseCode();
+
+                if (responseCode >= 200 && responseCode < 300) {
+
+                    new Handler(Looper.getMainLooper()).post(
+                            callback::onSuccess
+                    );
+
+                } else {
+
+                    InputStream stream = connection.getErrorStream();
+                    StringBuilder response = new StringBuilder();
+
+                    try (BufferedReader reader = new BufferedReader(
+                            new InputStreamReader(stream, StandardCharsets.UTF_8))) {
+
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            response.append(line);
+                        }
+                    }
+
+                    JSONObject json = new JSONObject(response.toString());
+
+                    String mensaje = json.optString(
+                            "message",
+                            "No se pudo enviar el correo de recuperación."
+                    );
+
+                    new Handler(Looper.getMainLooper()).post(
+                            () -> callback.onError(mensaje)
+                    );
+                }
+
+            } catch (Exception e) {
+
+                new Handler(Looper.getMainLooper()).post(
+                        () -> callback.onError(
+                                "Error de conexión: " + e.getMessage()
+                        )
+                );
+
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                executor.shutdown();
+            }
+        });
+    }
+
+
     public static void registrarUsuario(
             String nombre,
             String apellido,
@@ -296,5 +388,108 @@ public class AuthAPI {
             }
         });
     }
+
+
+    public interface UpdatePasswordCallback {
+        void onSuccess();
+        void onError(String mensaje);
+    }
+
+    public void actualizarPassword(
+            String accessToken,
+            String nuevaPassword,
+            UpdatePasswordCallback callback) {
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        executor.execute(() -> {
+
+            HttpURLConnection connection = null;
+
+            try {
+                URL url = new URL(
+                        SupabaseConfig.SUPABASE_URL + "/auth/v1/user"
+                );
+
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("PUT");
+                connection.setConnectTimeout(15000);
+                connection.setReadTimeout(15000);
+                connection.setDoOutput(true);
+
+                connection.setRequestProperty(
+                        "apikey", SupabaseConfig.SUPABASE_KEY
+                );
+                connection.setRequestProperty(
+                        "Authorization", "Bearer " + accessToken
+                );
+                connection.setRequestProperty(
+                        "Content-Type", "application/json"
+                );
+
+                JSONObject body = new JSONObject();
+                body.put("password", nuevaPassword);
+
+                try (OutputStream os = connection.getOutputStream()) {
+                    os.write(body.toString().getBytes(StandardCharsets.UTF_8));
+                }
+
+                int responseCode = connection.getResponseCode();
+
+                if (responseCode >= 200 && responseCode < 300) {
+
+                    new Handler(Looper.getMainLooper()).post(
+                            callback::onSuccess
+                    );
+
+                } else {
+
+                    InputStream stream = connection.getErrorStream();
+                    StringBuilder response = new StringBuilder();
+
+                    if (stream != null) {
+                        try (BufferedReader reader = new BufferedReader(
+                                new InputStreamReader(
+                                        stream, StandardCharsets.UTF_8))) {
+
+                            String line;
+                            while ((line = reader.readLine()) != null) {
+                                response.append(line);
+                            }
+                        }
+                    }
+
+                    JSONObject json = new JSONObject(response.toString());
+
+                    String mensaje = json.optString(
+                            "message",
+                            json.optString(
+                                    "msg",
+                                    "No se pudo actualizar la contraseña."
+                            )
+                    );
+
+                    new Handler(Looper.getMainLooper()).post(
+                            () -> callback.onError(mensaje)
+                    );
+                }
+
+            } catch (Exception e) {
+
+                new Handler(Looper.getMainLooper()).post(
+                        () -> callback.onError(
+                                "Error de conexión: " + e.getMessage()
+                        )
+                );
+
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                executor.shutdown();
+            }
+        });
+    }
+
 
 }

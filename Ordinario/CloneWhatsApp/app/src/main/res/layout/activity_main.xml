@@ -133,6 +133,20 @@
                 android:autofillHints="password"
                 android:singleLine="true" />
 
+
+            <TextView
+                android:id="@+id/btnRecuperarPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿OLVIDASTE TU CONTRASEÑA?"
+                android:textColor="#00F5FF"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:gravity="end"
+                android:padding="12dp"
+                android:clickable="true"
+                android:focusable="true" />
+
             <!-- Botón iniciar sesión -->
             <Button
                 android:id="@+id/btnIniciarSesion"

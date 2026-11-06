@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText etCorreoLogin, etPasswordLogin;
     private Button btnIniciarSesion, btnIrRegistro;
+    private TextView btnRecuperarPassword;
 
     private AuthAPI authAPI;
 
@@ -28,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         etPasswordLogin = findViewById(R.id.etPasswordLogin);
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion);
         btnIrRegistro = findViewById(R.id.btnIrRegistro);
+        btnRecuperarPassword = findViewById(R.id.btnRecuperarPassword);
+
+        btnRecuperarPassword.setOnClickListener(v -> solicitarRecuperacion());
 
         authAPI = new AuthAPI();
 
@@ -92,4 +97,49 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void solicitarRecuperacion() {
+
+        String email = etCorreoLogin.getText().toString().trim();
+
+        if (email.isEmpty()) {
+            etCorreoLogin.setError("Ingresa tu correo electrónico");
+            etCorreoLogin.requestFocus();
+            return;
+        }
+
+        btnRecuperarPassword.setEnabled(false);
+
+        authAPI.recuperarPassword(email, new AuthAPI.RecoveryCallback() {
+
+            @Override
+            public void onSuccess() {
+
+                btnRecuperarPassword.setEnabled(true);
+
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("CORREO ENVIADO")
+                        .setMessage(
+                                "Si la cuenta existe, recibirás un correo " +
+                                        "con las instrucciones para recuperar tu contraseña."
+                        )
+                        .setPositiveButton("ACEPTAR", null)
+                        .show();
+            }
+
+            @Override
+            public void onError(String mensaje) {
+
+                btnRecuperarPassword.setEnabled(true);
+
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("ERROR")
+                        .setMessage(mensaje)
+                        .setPositiveButton("ACEPTAR", null)
+                        .show();
+            }
+        });
+    }
+
 }
