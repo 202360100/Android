@@ -1,4 +1,3 @@
-
 package com.example.clonewhatsapp;
 
 import android.graphics.Bitmap;
@@ -16,7 +15,7 @@ import java.util.concurrent.Executors;
 public class ImagenAPI {
 
     private static final ExecutorService executor =
-            Executors.newFixedThreadPool(2);
+            Executors.newFixedThreadPool(4);
 
     private static final Handler handler =
             new Handler(Looper.getMainLooper());
@@ -27,6 +26,8 @@ public class ImagenAPI {
             return;
         }
 
+        imageView.setTag(url);
+
         executor.execute(() -> {
             HttpURLConnection conexion = null;
 
@@ -34,20 +35,39 @@ public class ImagenAPI {
                 conexion = (HttpURLConnection)
                         new URL(url).openConnection();
 
-                conexion.setConnectTimeout(10000);
-                conexion.setReadTimeout(10000);
+                conexion.setRequestMethod("GET");
+                conexion.setConnectTimeout(15000);
+                conexion.setReadTimeout(15000);
+                conexion.setInstanceFollowRedirects(true);
+
+                int codigo = conexion.getResponseCode();
+
+                if (codigo < 200 || codigo >= 300) {
+                    throw new Exception("HTTP " + codigo);
+                }
+
+                Bitmap bitmap;
 
                 try (InputStream input = conexion.getInputStream()) {
-                    Bitmap bitmap = BitmapFactory.decodeStream(input);
+                    bitmap = BitmapFactory.decodeStream(input);
+                }
 
-                    if (bitmap != null) {
-                        handler.post(() ->
-                                imageView.setImageBitmap(bitmap));
-                    }
+                if (bitmap != null) {
+                    handler.post(() -> {
+                        Object etiqueta = imageView.getTag();
+
+                        if (url.equals(etiqueta)) {
+                            imageView.setImageBitmap(bitmap);
+                        }
+                    });
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                android.util.Log.e(
+                        "ImagenAPI",
+                        "Error al cargar imagen: " + url,
+                        e
+                );
             } finally {
                 if (conexion != null) {
                     conexion.disconnect();

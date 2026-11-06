@@ -46,6 +46,12 @@
         <activity
             android:name=".PerfilActivity"
             android:exported="false" />
+        <activity
+            android:name=".ContactosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

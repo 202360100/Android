@@ -45,11 +45,13 @@ public class HomeActivity extends AppCompatActivity {
 
         btnCerrarSesion.setOnClickListener(v -> confirmarCierreSesion());
 
-        btnNuevoChat.setOnClickListener(v ->
-                Toast.makeText(this,
-                        "La función de nuevo chat estará disponible próximamente.",
-                        Toast.LENGTH_SHORT).show()
-        );
+        btnNuevoChat.setOnClickListener(v -> {
+            Intent intent = new Intent(
+                    HomeActivity.this,
+                    ContactosActivity.class
+            );
+            startActivity(intent);
+        });
 
         tabChats.setOnClickListener(v ->
                 Toast.makeText(this, "Sección de chats", Toast.LENGTH_SHORT).show()
