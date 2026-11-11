@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/terminal_black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="28dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CUSTOMPASS"
+            android:textColor="@color/terminal_green"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SYSTEM TERMINAL v1.0"
+            android:textColor="@color/terminal_green"
+            android:textSize="12sp"
+            android:layout_marginBottom="35dp"
+            android:fontFamily="monospace"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/terminal_green"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USER AUTHENTICATION"
+            android:textColor="@color/terminal_green"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="monospace"/>
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="EMAIL ADDRESS"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:textColor="@color/terminal_green"
+            android:textColorHint="@color/terminal_gray"
+            android:backgroundTint="@color/terminal_green"
+            android:fontFamily="monospace"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="PASSWORD"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="@color/terminal_green"
+            android:textColorHint="@color/terminal_gray"
+            android:backgroundTint="@color/terminal_green"
+            android:fontFamily="monospace"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="[ LOGIN ]"
+            android:textColor="@color/terminal_black"
+            android:backgroundTint="@color/terminal_green"
+            android:layout_marginTop="25dp"
+            android:fontFamily="monospace"/>
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="[ CREATE ACCOUNT ]"
+            android:textColor="@color/terminal_green"
+            android:backgroundTint="@color/terminal_dark_green"
+            android:layout_marginTop="12dp"
+            android:fontFamily="monospace"/>
+
+        <TextView
+            android:id="@+id/tvRecovery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[ FORGOT PASSWORD? ]"
+            android:textColor="@color/terminal_green"
+            android:textSize="14sp"
+            android:padding="20dp"
+            android:fontFamily="monospace"/>
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SYSTEM READY..."
+            android:textColor="@color/terminal_green"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:padding="15dp"
+            android:fontFamily="monospace"/>
+
+    </LinearLayout>
+
+</ScrollView>

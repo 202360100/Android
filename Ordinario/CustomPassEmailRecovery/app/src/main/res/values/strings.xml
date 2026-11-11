@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CustomPass Terminal</string>
+    <string name="system_name">CUSTOMPASS SYSTEM</string>
+    <string name="system_version">TERMINAL VERSION 1.0</string>
+</resources>
