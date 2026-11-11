@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="12dp"
+    android:background="#080B19">
+
+    <ImageView
+        android:id="@+id/ivFotoConversacion"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:src="@android:drawable/sym_def_app_icon"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="12dp">
+
+        <TextView
+            android:id="@+id/tvNombreConversacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre del contacto"
+            android:textColor="#00E5FF"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvUltimoMensaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Último mensaje"
+            android:textColor="#BBBBBB"
+            android:textSize="13sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

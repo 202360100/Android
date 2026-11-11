@@ -9,9 +9,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 import org.json.JSONObject;
+import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -21,11 +28,64 @@ public class HomeActivity extends AppCompatActivity {
     private TextView tabEstados;
     private TextView tabLlamadas;
     private ImageView ivFotoHome;
+    private RecyclerView rvConversaciones;
+    private TextView tvSinConversaciones;
+
+    private ArrayList<Conversacion> listaConversaciones;
+    private ConversacionAdapter conversacionAdapter;
+
+    private String userId;
+    private String accessToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        android.content.SharedPreferences preferences =
+                getSharedPreferences("supabase_session", MODE_PRIVATE);
+
+        userId = preferences.getString("user_id", null);
+        accessToken = preferences.getString("access_token", null);
+
+        rvConversaciones = findViewById(R.id.rvConversaciones);
+        tvSinConversaciones = findViewById(R.id.tvSinConversaciones);
+
+        listaConversaciones = new ArrayList<>();
+
+        conversacionAdapter = new ConversacionAdapter(
+                listaConversaciones,
+                conversacion -> {
+
+                    Intent intent = new Intent(
+                            HomeActivity.this,
+                            ChatActivity.class
+                    );
+
+                    intent.putExtra(
+                            "idConversacion",
+                            conversacion.getId()
+                    );
+
+                    intent.putExtra(
+                            "nombreContacto",
+                            conversacion.getNombre()
+                    );
+
+                    intent.putExtra(
+                            "fotoContacto",
+                            conversacion.getFoto()
+                    );
+
+                    startActivity(intent);
+                }
+        );
+
+        rvConversaciones.setLayoutManager(
+                new LinearLayoutManager(this)
+        );
+
+        rvConversaciones.setAdapter(conversacionAdapter);
 
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
         btnNuevoChat = findViewById(R.id.btnNuevoChat);
@@ -72,9 +132,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (ivFotoHome != null) {
-            cargarFotoPerfil();
-        }
+        cargarFotoPerfil();
+        cargarConversaciones();
     }
 
     private void confirmarCierreSesion() {
@@ -144,5 +203,42 @@ public class HomeActivity extends AppCompatActivity {
                         // Se conserva la imagen predeterminada.
                     }
                 });
+    }
+
+    private void cargarConversaciones() {
+
+        if (accessToken == null) return;
+
+        ConversacionesListaAPI.obtenerConversaciones(
+                accessToken,
+                new ConversacionesListaAPI.Callback() {
+
+                    @Override
+                    public void onSuccess(
+                            ArrayList<Conversacion> conversaciones
+                    ) {
+                        listaConversaciones.clear();
+                        listaConversaciones.addAll(conversaciones);
+
+                        conversacionAdapter.notifyDataSetChanged();
+
+                        tvSinConversaciones.setVisibility(
+                                conversaciones.isEmpty()
+                                        ? View.VISIBLE
+                                        : View.GONE
+                        );
+                    }
+
+                    @Override
+                    public void onError(String error) {
+
+                        Toast.makeText(
+                                HomeActivity.this,
+                                "Error al cargar conversaciones: " + error,
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                }
+        );
     }
 }

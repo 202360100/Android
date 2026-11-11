@@ -102,51 +102,37 @@
     </LinearLayout>
 
     <!-- Contenido -->
+
+
+    <!-- Contenido -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="18dp">
+        android:layout_weight="1">
 
-        <LinearLayout
-            android:id="@+id/contenidoChats"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvConversaciones"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:clipToPadding="false"/>
+
+        <TextView
+            android:id="@+id/tvSinConversaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:background="@drawable/bg_neon_panel"
-            android:padding="20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="[ NO SIGNAL ]"
-                android:textColor="#FF38E8"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:fontFamily="monospace" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aún no tienes conversaciones."
-                android:textColor="#AAB2D5"
-                android:textSize="12sp"
-                android:fontFamily="monospace"
-                android:layout_marginTop="14dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Inicia una nueva conexión."
-                android:textColor="#00F5FF"
-                android:textSize="12sp"
-                android:fontFamily="monospace"
-                android:layout_marginTop="6dp" />
-
-        </LinearLayout>
+            android:padding="12dp"
+            android:text="Todavía no tienes conversaciones"
+            android:textColor="#888888"
+            android:textSize="15sp"
+            android:visibility="gone"/>
 
     </FrameLayout>
+
+
 
     <!-- Barra inferior -->
     <LinearLayout

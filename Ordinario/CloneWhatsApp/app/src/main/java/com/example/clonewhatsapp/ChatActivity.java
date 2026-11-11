@@ -28,6 +28,75 @@ public class ChatActivity extends AppCompatActivity {
     private MensajeAdapter adapter;
     private ArrayList<Mensaje> mensajes;
 
+    private void cargarMensajes() {
+
+        MensajesAPI.cargarMensajes(
+                idConversacion,
+                accessToken,
+                new MensajesAPI.MensajesCallback() {
+
+                    @Override
+                    public void onSuccess(ArrayList<Mensaje> lista) {
+
+                        mensajes.clear();
+                        mensajes.addAll(lista);
+
+                        adapter.notifyDataSetChanged();
+
+                        if (!mensajes.isEmpty()) {
+                            rvMensajes.scrollToPosition(mensajes.size() - 1);
+                        }
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        Toast.makeText(
+                                ChatActivity.this,
+                                "Error al cargar mensajes: " + error,
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                }
+        );
+    }
+
+    private void enviarMensaje() {
+
+        String contenido = etMensaje.getText().toString().trim();
+
+        if (contenido.isEmpty()) return;
+
+        MensajesAPI.enviarMensaje(
+                idConversacion,
+                userId,
+                contenido,
+                accessToken,
+                new MensajesAPI.EnviarCallback() {
+
+                    @Override
+                    public void onSuccess(Mensaje mensaje) {
+
+                        mensajes.add(mensaje);
+                        adapter.notifyItemInserted(mensajes.size() - 1);
+
+                        rvMensajes.scrollToPosition(mensajes.size() - 1);
+
+                        etMensaje.setText("");
+                    }
+
+                    @Override
+                    public void onError(String error) {
+
+                        Toast.makeText(
+                                ChatActivity.this,
+                                "No se pudo enviar: " + error,
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                }
+        );
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,18 +167,15 @@ public class ChatActivity extends AppCompatActivity {
             return;
         }
 
+        cargarMensajes();
+
         findViewById(R.id.btnEnviarMensaje).setOnClickListener(v -> {
-            String contenido = etMensaje.getText().toString().trim();
-
-            if (contenido.isEmpty()) {
-                return;
-            }
-
-            Toast.makeText(
-                    this,
-                    "Conectaremos el envío de mensajes en el siguiente paso",
-                    Toast.LENGTH_SHORT
-            ).show();
+            enviarMensaje();
         });
+
+        findViewById(R.id.btnVolverChat).setOnClickListener(v -> {
+            finish();
+        });
+
     }
 }
