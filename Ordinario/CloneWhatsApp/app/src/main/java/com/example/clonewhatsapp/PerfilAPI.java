@@ -18,8 +18,13 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class PerfilAPI {
+
 
     public interface PerfilCallback {
         void onSuccess(JSONObject perfil);
@@ -28,6 +33,11 @@ public class PerfilAPI {
 
     public interface ActualizarCallback {
         void onSuccess();
+        void onError(String mensaje);
+    }
+
+    public interface UltimaConexionCallback {
+        void onSuccess(String fecha);
         void onError(String mensaje);
     }
 
@@ -196,4 +206,88 @@ public class PerfilAPI {
             callback.onError(e.getMessage());
         }
     }
+
+
+    public void actualizarUltimaConexion(
+            String userId,
+            String token,
+            ActualizarCallback callback) {
+
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat(
+                    "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                    Locale.US
+            );
+
+            formato.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+            String fechaActual = formato.format(new Date());
+
+            JSONObject body = new JSONObject();
+            body.put("ultima_conexion", fechaActual);
+
+            String endpoint = "/rest/v1/profiles"
+                    + "?idProfile=eq." + userId;
+
+            ejecutarPeticion("PATCH", endpoint, token, body,
+                    new PeticionCallback() {
+                        @Override
+                        public void onSuccess(String respuesta) {
+                            callback.onSuccess();
+                        }
+
+                        @Override
+                        public void onError(String mensaje) {
+                            callback.onError(mensaje);
+                        }
+                    });
+
+        } catch (Exception e) {
+            callback.onError(e.getMessage());
+        }
+    }
+
+
+    public void consultarUltimaConexion(
+            String userId,
+            String token,
+            UltimaConexionCallback callback) {
+
+        String endpoint = "/rest/v1/profiles"
+                + "?select=ultima_conexion"
+                + "&idProfile=eq." + userId;
+
+        ejecutarPeticion("GET", endpoint, token, null,
+                new PeticionCallback() {
+
+                    @Override
+                    public void onSuccess(String respuesta) {
+                        try {
+                            JSONArray array = new JSONArray(respuesta);
+
+                            if (array.length() == 0) {
+                                callback.onError("No se encontró el perfil.");
+                                return;
+                            }
+
+                            JSONObject perfil = array.getJSONObject(0);
+
+                            String fecha = perfil.isNull("ultima_conexion")
+                                    ? null
+                                    : perfil.getString("ultima_conexion");
+
+                            callback.onSuccess(fecha);
+
+                        } catch (Exception e) {
+                            callback.onError(e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onError(String mensaje) {
+                        callback.onError(mensaje);
+                    }
+                });
+    }
+
 }

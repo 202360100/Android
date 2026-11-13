@@ -77,6 +77,11 @@ public class HomeActivity extends AppCompatActivity {
                             conversacion.getFoto()
                     );
 
+                    intent.putExtra(
+                            "contactoId",
+                            conversacion.getContactoId()
+                    );
+
                     startActivity(intent);
                 }
         );

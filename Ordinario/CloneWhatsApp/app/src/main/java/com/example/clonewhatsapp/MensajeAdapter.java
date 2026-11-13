@@ -1,5 +1,6 @@
 package com.example.clonewhatsapp;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,14 +58,40 @@ public class MensajeAdapter extends RecyclerView.Adapter<MensajeAdapter.ViewHold
 
         holder.tvContenido.setText(mensaje.getContenido());
         holder.tvHora.setText(obtenerHora(mensaje.getCreatedAt()));
+
+        if (holder.tvEstado != null) {
+            String estado = mensaje.getEstado();
+
+            if ("leido".equals(estado)) {
+                holder.tvEstado.setText("✓✓");
+                holder.tvEstado.setTextColor(
+                        Color.parseColor("#008CFF")
+                );
+
+            } else if ("entregado".equals(estado)) {
+                holder.tvEstado.setText("✓✓");
+                holder.tvEstado.setTextColor(
+                        Color.parseColor("#888888")
+                );
+
+            } else {
+                holder.tvEstado.setText("✓");
+                holder.tvEstado.setTextColor(
+                        Color.parseColor("#888888")
+                );
+            }
+        }
     }
+
 
     private String obtenerHora(String fecha) {
         try {
             SimpleDateFormat entrada = new SimpleDateFormat(
-                    "yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX",
+                    "yyyy-MM-dd'T'HH:mm:ss",
                     Locale.getDefault()
             );
+
+            entrada.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
 
             Date date = entrada.parse(fecha);
 
@@ -75,12 +102,15 @@ public class MensajeAdapter extends RecyclerView.Adapter<MensajeAdapter.ViewHold
                     Locale.getDefault()
             );
 
+            salida.setTimeZone(java.util.TimeZone.getDefault());
+
             return salida.format(date);
 
         } catch (Exception e) {
             return "";
         }
     }
+
 
     @Override
     public int getItemCount() {
@@ -91,6 +121,7 @@ public class MensajeAdapter extends RecyclerView.Adapter<MensajeAdapter.ViewHold
 
         TextView tvContenido;
         TextView tvHora;
+        TextView tvEstado;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,6 +132,10 @@ public class MensajeAdapter extends RecyclerView.Adapter<MensajeAdapter.ViewHold
 
             tvHora = itemView.findViewById(
                     R.id.tvHoraMensaje
+            );
+
+            tvEstado = itemView.findViewById(
+                    R.id.tvEstadoMensaje
             );
         }
     }

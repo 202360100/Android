@@ -38,6 +38,16 @@ public class MensajesAPI {
         void onError(String error);
     }
 
+    public interface OperacionCallback {
+        void onSuccess();
+        void onError(String error);
+    }
+
+    public interface EstadosCallback {
+        void onSuccess(ArrayList<EstadoMensaje> estados);
+        void onError(String error);
+    }
+
     private static String leerRespuesta(HttpURLConnection connection)
             throws Exception {
 
@@ -214,4 +224,174 @@ public class MensajesAPI {
             }
         });
     }
+
+
+    private static void ejecutarFuncionEstado(
+            String nombreFuncion,
+            String idConversacion,
+            String accessToken,
+            OperacionCallback callback
+    ) {
+        executor.execute(() -> {
+            HttpURLConnection connection = null;
+
+            try {
+                URL url = new URL(
+                        SupabaseConfig.SUPABASE_URL
+                                + "/rest/v1/rpc/"
+                                + nombreFuncion
+                );
+
+                connection = (HttpURLConnection) url.openConnection();
+
+                connection.setRequestMethod("POST");
+                connection.setConnectTimeout(15000);
+                connection.setReadTimeout(15000);
+                connection.setDoOutput(true);
+
+                connection.setRequestProperty(
+                        "apikey",
+                        SupabaseConfig.SUPABASE_KEY
+                );
+
+                connection.setRequestProperty(
+                        "Authorization",
+                        "Bearer " + accessToken
+                );
+
+                connection.setRequestProperty(
+                        "Content-Type",
+                        "application/json"
+                );
+
+                JSONObject body = new JSONObject();
+                body.put("p_id_conversacion", idConversacion);
+
+                try (OutputStream output = connection.getOutputStream()) {
+                    output.write(
+                            body.toString().getBytes(StandardCharsets.UTF_8)
+                    );
+                }
+
+                String respuesta = leerRespuesta(connection);
+
+                int codigo = connection.getResponseCode();
+
+                if (codigo >= 200 && codigo < 300) {
+                    handler.post(callback::onSuccess);
+                } else {
+                    handler.post(() -> callback.onError(respuesta));
+                }
+
+            } catch (Exception e) {
+                handler.post(() ->
+                        callback.onError(e.getMessage())
+                );
+
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+            }
+        });
+    }
+
+    public static void marcarMensajesEntregados(
+            String idConversacion,
+            String accessToken,
+            OperacionCallback callback
+    ) {
+        ejecutarFuncionEstado(
+                "marcar_mensajes_entregados",
+                idConversacion,
+                accessToken,
+                callback
+        );
+    }
+
+    public static void marcarMensajesLeidos(
+            String idConversacion,
+            String accessToken,
+            OperacionCallback callback
+    ) {
+        ejecutarFuncionEstado(
+                "marcar_mensajes_leidos",
+                idConversacion,
+                accessToken,
+                callback
+        );
+    }
+
+
+    public static void cargarEstadosMensajes(
+            String idConversacion,
+            String accessToken,
+            EstadosCallback callback
+    ) {
+        executor.execute(() -> {
+            HttpURLConnection connection = null;
+
+            try {
+                String endpoint =
+                        SupabaseConfig.SUPABASE_URL
+                                + "/rest/v1/message_status"
+                                + "?select=idMessage,idProfile,estado,delivered_at,read_at"
+                                + "&order=delivered_at.desc";
+
+                URL url = new URL(endpoint);
+                connection = (HttpURLConnection) url.openConnection();
+
+                connection.setRequestMethod("GET");
+                connection.setConnectTimeout(15000);
+                connection.setReadTimeout(15000);
+
+                connection.setRequestProperty(
+                        "apikey",
+                        SupabaseConfig.SUPABASE_KEY
+                );
+
+                connection.setRequestProperty(
+                        "Authorization",
+                        "Bearer " + accessToken
+                );
+
+                String respuesta = leerRespuesta(connection);
+                int codigo = connection.getResponseCode();
+
+                if (codigo >= 200 && codigo < 300) {
+
+                    JSONArray array = new JSONArray(respuesta);
+                    ArrayList<EstadoMensaje> lista = new ArrayList<>();
+
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject objeto = array.getJSONObject(i);
+
+                        lista.add(new EstadoMensaje(
+                                objeto.optString("idMessage"),
+                                objeto.optString("idProfile"),
+                                objeto.optString("estado"),
+                                objeto.optString("delivered_at"),
+                                objeto.optString("read_at")
+                        ));
+                    }
+
+                    handler.post(() -> callback.onSuccess(lista));
+
+                } else {
+                    handler.post(() -> callback.onError(respuesta));
+                }
+
+            } catch (Exception e) {
+                handler.post(() ->
+                        callback.onError(e.getMessage())
+                );
+
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+            }
+        });
+    }
+
 }

@@ -1,3 +1,4 @@
+
 package com.example.clonewhatsapp;
 
 public class Mensaje {
@@ -6,6 +7,7 @@ public class Mensaje {
     private String contenido;
     private String idProfile;
     private String createdAt;
+    private String estado;
 
     public Mensaje(
             String id,
@@ -17,6 +19,7 @@ public class Mensaje {
         this.contenido = contenido;
         this.idProfile = idProfile;
         this.createdAt = createdAt;
+        this.estado = "enviado";
     }
 
     public String getId() {
@@ -33,5 +36,13 @@ public class Mensaje {
 
     public String getCreatedAt() {
         return createdAt;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
