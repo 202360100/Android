@@ -4,77 +4,196 @@
 **Matrícula:** 202360100  
 **Curso:** Desarrollo de aplicaciones móviles
 
+Repositorio de prácticas, ejercicios y proyectos desarrollados durante el curso. Incluye aplicaciones con React Native y Expo, proyectos nativos de Android y ejemplos de consumo de servicios y persistencia de datos.
+
 ---
 
 ## Tecnologías utilizadas
 
-- JavaScript (ES6) y JSX
-- React 19 (hooks: `useState`, `useEffect`, `useRef`, `useContext`)
-- React Native con Expo (SDK 54 y SDK 57) y Expo Go
-- React Navigation 7 (Stack, Bottom Tabs y Drawer)
-- API `Animated` de React Native
-- Node.js, Express y MongoDB Atlas (API de películas)
+- **JavaScript (ES6) y JSX**
+- **React y React Native**
+- **Expo:** se identifican proyectos con SDK 54, SDK 57 y SDK 58.
+- **React Navigation 7:** navegación Stack, Bottom Tabs y Drawer.
+- **Componentes de React Native:** `FlatList`, `SectionList`, `ScrollView`, `TextInput`, `Modal` e `ImageBackground`.
+- **Hooks y estado:** `useState`, `useEffect`, `useRef` y Context API, según el proyecto.
+- **Animaciones:** API `Animated` de React Native y Reanimated.
+- **Persistencia y servicios:** AsyncStorage, Expo SQLite, Supabase y MongoDB.
+- **Backend:** Node.js y Express.
+- **Android nativo:** proyectos desarrollados con Java y herramientas de Android Studio.
+
+> Las versiones y dependencias pueden variar entre proyectos. Consulta el `package.json` de cada aplicación Expo o los archivos Gradle de cada proyecto nativo.
 
 ---
 
 ## Estructura del repositorio
 
-```
-📁 Android-main
+```text
+Android-main/
 │
-├── 📁 Ejercicio_01
-│   └── 🧩 Componentes y props: MiComponente y Mensaje reutilizable
+├── BattleSimulator/
+│   └── Simulador de batallas con unidades, movimiento y combate.
+│       Incluye creación y consulta de simulaciones guardadas,
+│       navegación Drawer y almacenamiento local.
 │
-├── 📁 Ejemplo_02
-│   └── 🧩 Flexbox, TextInput y ScrollView; DemoChildren y FlagComponent
+├── Ejercicio_01/
+│   └── Componentes reutilizables: MiComponente y Mensaje.
 │
-├── 📁 Ejercicio_03
-│   └── 🧩 Listas con FlatList y SectionList; ImageBackground e Image
+├── Ejemplo_02/
+│   └── Ejemplos de componentes, entrada de texto y composición:
+│       DemoChildren, DemoInputText y FlagComponent.
 │
-├── 📁 Ejercicio_04
-│   └── 🧩 Modal reutilizable (CustomModal) con el texto capturado
+├── Ejercicio_03/
+│   └── Listas con FlatList y SectionList, además de imágenes
+│       e ImageBackground.
 │
-└── 📁 Parcial
+├── Ejercicio_04/
+│   └── Modal reutilizable (CustomModal) y ejemplos de uso.
+│
+├── Parcial/
+│   │
+│   ├── Animated/
+│   │   └── Ejercicios de animación con la API Animated.
+│   │
+│   ├── ConsumeApiMongoDB/
+│   │   └── Servidor Express para consultar películas mediante
+│   │       el endpoint GET /movies y conexión con MongoDB.
+│   │
+│   ├── DinamicFlatList/
+│   │   └── Lista dinámica con FlatList y modal de detalle.
+│   │
+│   ├── DrawerNavigation/
+│   │   └── Navegación mediante menú lateral y ejemplo de
+│   │       pantalla de inicio (splash screen).
+│   │
+│   ├── FitCalc/
+│   │   └── Calculadora de IMC con resultado presentado
+│   │       mediante un modal.
+│   │
+│   ├── LifeRpg/
+│   │   └── Aplicación de rol con personajes, enemigos,
+│   │       dados y arena; utiliza navegación y Context API.
+│   │
+│   ├── StackNavigation/
+│   │   └── Ejemplo de navegación en pila entre pantallas.
+│   │
+│   └── TabNavigation/
+│       └── Navegación inferior por pestañas: Inicio,
+│           Buscar y Perfil.
+│
+└── Ordinario/
     │
-    ├── 📁 Animated
-    │   └── 🧩 Animación de opacidad, posición y escala en paralelo
+    ├── CloneWhatsApp/
+    │   └── Aplicación Android nativa con contactos,
+    │       conversaciones y mensajes.
     │
-    ├── 📁 ConsumeApiMongoDB
-    │   └── 🧩 Servidor Express y MongoDB con el endpoint GET /movies
+    ├── CustomPassEmailRecovery/
+    │   └── Flujo de registro, recuperación de contraseña
+    │       por correo y creación de una nueva contraseña.
     │
-    ├── 📁 DinamicFlatList
-    │   └── 🧩 Lista de cursos con FlatList; al tocar uno abre un modal
+    ├── FaceRecognition/
+    │   └── Aplicación React Native relacionada con cámara
+    │       y detección de rostros.
     │
-    ├── 📁 DrawerNavigation
-    │   └── 🧩 Menú lateral con 4 pantallas y ejemplo de splash screen
+    ├── Fragmentado/
+    │   └── Aplicación Android con navegación mediante
+    │       fragments: Inicio, Acerca y Contacto.
     │
-    ├── 📁 FitCalc
-    │   └── 🧩 Calculadora de IMC con resultado y mensaje en un modal
+    ├── Layouts/
+    │   └── Ejemplos de FrameLayout, LinearLayout,
+    │       RelativeLayout y TableLayout.
     │
-    ├── 📁 LifeRpg
-    │   └── 🧩 App de rol: dados d20, personajes, enemigos y arena
-    │       (Drawer y Tabs, Context API y componentes estilo pixel)
+    ├── Listas/
+    │   └── Ejemplo de listas con Adapter para mostrar
+    │       información de estudiantes.
     │
-    ├── 📁 StackNavigation
-    │   └── 🧩 Navegación en pila: IMC, conversor USD-MXN y propina
+    ├── Persistencia/
+    │   └── Aplicación React Native para agregar, consultar,
+    │       actualizar y eliminar productos; utiliza Supabase.
     │
-    └── 📁 TabNavigation
-        └── 🧩 Barra de pestañas inferior: Inicio, Buscar y Perfil
+    ├── PersistenciaAndroid/
+    │   └── Proyecto Android nativo relacionado con
+    │       persistencia de datos.
+    │
+    ├── RiskMex/
+    │   └── Juego de estrategia por territorios con mapa
+    │       de México, ejércitos y resolución de combates.
+    │
+    ├── Sensores_NavDrawer/
+    │   └── Aplicación Android con menú lateral y ejemplos
+    │       de cámara, GPS, acelerómetro, giroscopio,
+    │       magnetómetro y podómetro.
+    │
+    ├── VertHorizon/
+    │   └── Proyecto Android nativo.
+    │
+    └── CalculadoraSumas/
+        └── Carpeta de proyecto incluida en el repositorio.
 ```
 
 ---
 
-## Ejecución
+## Ejecución de proyectos React Native con Expo
+
+Cada aplicación Expo tiene su propio `package.json`. Por ello, las dependencias deben instalarse desde la carpeta del proyecto que se desea ejecutar.
+
+Por ejemplo:
 
 ```bash
-cd Parcial/FitCalc      # entrar a cualquier proyecto
-npm install             # instalar dependencias
-npx expo start          # abrir con Expo Go o emulador Android
+# Entrar al proyecto
+cd Parcial/FitCalc
+
+# Instalar dependencias
+npm install
+
+# Iniciar Expo
+npx expo start
 ```
 
-Servidor de la API (`Parcial/ConsumeApiMongoDB/Servidor`):
+Después de iniciar Expo, puedes abrir la aplicación con Expo Go cuando la versión y las dependencias del proyecto sean compatibles, o utilizar un emulador Android.
+
+Para ejecutar otro proyecto, cambia la ruta. Por ejemplo:
 
 ```bash
-npm install express mongodb cors
+cd Ejercicio_01
+npm install
+npx expo start
+```
+
+---
+
+## Ejecución del servidor de películas
+
+El servidor se encuentra en `Parcial/ConsumeApiMongoDB/Servidor`.
+
+```bash
+cd Parcial/ConsumeApiMongoDB/Servidor
+
 node Server.js
 ```
+
+El servidor requiere las dependencias de Node.js que utiliza el código y una configuración válida de conexión a MongoDB. El endpoint documentado en el proyecto es:
+
+```http
+GET /movies
+```
+
+---
+
+## Proyectos Android nativos
+
+Las carpetas que contienen proyectos Android nativos pueden abrirse individualmente desde Android Studio.
+
+1. Abrir Android Studio.
+2. Seleccionar **Open**.
+3. Elegir la carpeta del proyecto deseado dentro de `Ordinario`.
+4. Esperar a que Gradle sincronice las dependencias.
+5. Seleccionar un emulador o dispositivo Android y ejecutar la aplicación.
+
+---
+
+## Notas
+
+- No existe un único comando de instalación para todo el repositorio: cada proyecto mantiene sus propias dependencias.
+- Las versiones de Expo, React y React Native no son iguales en todas las aplicaciones.
+- Los proyectos que utilizan servicios externos requieren su configuración correspondiente antes de ejecutarse.
+- No publiques credenciales, claves API ni archivos `.env` con información sensible.
